@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="WarrantyWise — track your products, warranties and service history, privately in your browser.">
+<meta name="theme-color" content="#101827">
+<title>WarrantyWise — Product &amp; Warranty Tracker</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar" aria-label="Main navigation">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5l-8-3-8 3v7c0 6.4 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      </span>
+      <span class="brand-name">WarrantyWise</span>
+    </div>
+    <nav class="nav" id="sideNav">
+      <button class="nav-btn" data-view="dashboard" aria-current="page">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-btn" data-view="products">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+        <span>My Products</span>
+      </button>
+      <button class="nav-btn" data-view="form">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+        <span>Add Product</span>
+      </button>
+      <button class="nav-btn" data-view="settings">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        <span>Settings</span>
+      </button>
+    </nav>
+    <p class="side-note">Your data stays in this browser. No account, no cloud.</p>
+  </aside>
+
+  <div class="main-wrap">
+    <header class="topbar">
+      <div class="topbar-title">
+        <span class="brand-mark mobile-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-3.6 8-10V5l-8-3-8 3v7c0 6.4 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        <h1 id="pageTitle">Dashboard</h1>
+      </div>
+      <button class="theme-btn" id="themeToggle" type="button" aria-label="Switch theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></svg>
+        <span id="themeLabel">Dark theme</span>
+      </button>
+    </header>
+
+    <main class="main" id="main">
+      <div class="corrupt-banner" id="corruptBanner" hidden>
+        <strong>Stored data could not be read.</strong>
+        <span>Your saved products were left untouched. You can import a backup from Settings, or reset to start fresh.</span>
+        <button class="btn btn-small" id="corruptGoSettings" type="button">Open Settings</button>
+      </div>
+
+      <!-- Dashboard -->
+      <section class="view" id="view-dashboard" aria-label="Dashboard">
+        <div class="stats" role="group" aria-label="Warranty totals">
+          <div class="stat-card"><span class="stat-num" id="statTotal">0</span><span class="stat-label">Total products</span></div>
+          <div class="stat-card stat-active"><span class="stat-num" id="statActive">0</span><span class="stat-label">Active warranties</span></div>
+          <div class="stat-card stat-soon"><span class="stat-num" id="statSoon">0</span><span class="stat-label">Expiring soon</span></div>
+          <div class="stat-card stat-expired"><span class="stat-num" id="statExpired">0</span><span class="stat-label">Expired</span></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Expiring soon</h2>
+            <span class="panel-sub" id="soonWindowNote"></span>
+          </div>
+          <ul class="item-list" id="attentionList"></ul>
+          <p class="empty-note" id="attentionEmpty">No warranties expiring soon. When a warranty enters your alert window, it will show up here.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Recently added</h2>
+            <button class="btn btn-ghost btn-small" id="dashViewAll" type="button">View all products</button>
+          </div>
+          <ul class="item-list" id="recentList"></ul>
+          <p class="empty-note" id="recentEmpty">No products yet. Add your first product to start tracking its warranty.</p>
+          <button class="btn btn-primary" id="dashAddBtn" type="button">Add a product</button>
+        </div>
+      </section>
+
+      <!-- Products -->
+      <section class="view" id="view-products" aria-label="My products" hidden>
+        <div class="toolbar">
+          <div class="search-wrap">
+            <label class="sr-only" for="searchInput">Search products</label>
+            <input type="search" id="searchInput" placeholder="Search name, brand, retailer, serial…" autocomplete="off">
+          </div>
+          <label class="filter-label">Category
+            <select id="filterCategory"></select>
+          </label>
+          <label class="filter-label">Status
+            <select id="filterStatus">
+              <option value="all">All statuses</option>
+              <option value="active">Active</option>
+              <option value="soon">Expiring soon</option>
+              <option value="expired">Expired</option>
+              <option value="none">No warranty</option>
+            </select>
+          </label>
+          <label class="filter-label">Sort by
+            <select id="sortSelect">
+              <option value="warranty">Warranty end (soonest)</option>
+              <option value="purchase-desc">Purchase date (newest)</option>
+              <option value="purchase-asc">Purchase date (oldest)</option>
+              <option value="created-desc">Recently added</option>
+              <option value="name">Name (A–Z)</option>
+            </select>
+          </label>
+        </div>
+        <p class="list-count" id="listCount">0 products</p>
+        <ul class="item-list product-list" id="productList"></ul>
+        <p class="empty-note" id="listEmpty" hidden>No products match these filters. Try clearing the search or choosing different filters.</p>
+        <p class="empty-note" id="listEmptyAll">No products yet. Add your first product to start tracking its warranty.</p>
+      </section>
+
+      <!-- Add / Edit form -->
+      <section class="view" id="view-form" aria-label="Add or edit product" hidden>
+        <div class="panel form-panel">
+          <h2 id="formTitle">Add product</h2>
+          <form id="productForm" novalidate>
+            <div class="field">
+              <label for="fName">Product name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="fName" maxlength="100" required autocomplete="off">
+              <p class="field-error" id="errName" hidden></p>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="fBrand">Brand</label>
+                <input type="text" id="fBrand" maxlength="100" autocomplete="off">
+              </div>
+              <div class="field">
+                <label for="fCategory">Category</label>
+                <select id="fCategory">
+                  <option>Electronics</option>
+                  <option>Appliances</option>
+                  <option>Furniture</option>
+                  <option>Vehicles</option>
+                  <option>Tools</option>
+                  <option>Clothing</option>
+                  <option>Jewellery</option>
+                  <option>Other</option>
+                  <option value="__custom">Custom…</option>
+                </select>
+              </div>
+            </div>
+            <div class="field" id="customCategoryField" hidden>
+              <label for="fCustomCategory">Custom category</label>
+              <input type="text" id="fCustomCategory" maxlength="50" autocomplete="off">
+              <p class="field-error" id="errCustomCategory" hidden></p>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="fPurchaseDate">Purchase date</label>
+                <input type="date" id="fPurchaseDate">
+                <p class="field-error" id="errPurchaseDate" hidden></p>
+              </div>
+              <div class="field">
+                <label for="fWarrantyEnd">Warranty ends</label>
+                <input type="date" id="fWarrantyEnd">
+                <p class="field-hint">Leave blank if there is no warranty.</p>
+                <p class="field-error" id="errWarrantyEnd" hidden></p>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="fPrice">Price</label>
+                <input type="number" id="fPrice" min="0" step="0.01" inputmode="decimal" placeholder="0.00">
+                <p class="field-error" id="errPrice" hidden></p>
+              </div>
+              <div class="field">
+                <label for="fRetailer">Retailer / store</label>
+                <input type="text" id="fRetailer" maxlength="100" autocomplete="off">
+              </div>
+            </div>
+            <div class="field">
+              <label for="fSerial">Serial number</label>
+              <input type="text" id="fSerial" maxlength="100" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="fNotes">Notes</label>
+              <textarea id="fNotes" maxlength="1000" rows="3" placeholder="Anything worth remembering about this product…"></textarea>
+              <p class="field-hint"><span id="notesCount">0</span>/1000 characters</p>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="saveProductBtn" type="submit">Save product</button>
+              <button class="btn btn-ghost" id="cancelFormBtn" type="button">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Product detail -->
+      <section class="view" id="view-detail" aria-label="Product details" hidden>
+        <button class="btn btn-ghost btn-small back-btn" id="detailBack" type="button">← Back to products</button>
+        <div class="panel detail-panel" id="detailPanel"></div>
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Service history</h2>
+            <button class="btn btn-primary btn-small" id="addServiceBtn" type="button">Add service record</button>
+          </div>
+          <ul class="item-list" id="serviceList"></ul>
+          <p class="empty-note" id="serviceEmpty">No service records yet. Add repairs or maintenance here to keep a full history for this product.</p>
+        </div>
+        <div class="panel form-panel" id="serviceFormPanel" hidden>
+          <h2 id="serviceFormTitle">Add service record</h2>
+          <form id="serviceForm" novalidate>
+            <div class="field-row">
+              <div class="field">
+                <label for="sDate">Service date <span class="req" aria-hidden="true">*</span></label>
+                <input type="date" id="sDate">
+                <p class="field-error" id="errServiceDate" hidden></p>
+              </div>
+              <div class="field">
+                <label for="sType">Type</label>
+                <select id="sType">
+                  <option>Repair</option>
+                  <option>Maintenance</option>
+                  <option>Inspection</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="sDescription">Description <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="sDescription" maxlength="200" autocomplete="off" placeholder="e.g. Screen replaced under warranty">
+              <p class="field-error" id="errServiceDescription" hidden></p>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="sCost">Cost</label>
+                <input type="number" id="sCost" min="0" step="0.01" inputmode="decimal" placeholder="0.00">
+                <p class="field-error" id="errServiceCost" hidden></p>
+              </div>
+              <div class="field">
+                <label for="sProvider">Service provider</label>
+                <input type="text" id="sProvider" maxlength="100" autocomplete="off">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" id="saveServiceBtn">Save record</button>
+              <button class="btn btn-ghost" type="button" id="cancelServiceBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section class="view" id="view-settings" aria-label="Settings" hidden>
+        <div class="panel">
+          <h2>Alerts</h2>
+          <div class="field">
+            <label for="setAlertWindow">Warranty alert window (days)</label>
+            <input type="number" id="setAlertWindow" min="1" max="90" step="1">
+            <p class="field-hint">Warranties ending within this many days count as “Expiring soon”. Allowed range: 1–90.</p>
+            <p class="field-error" id="errAlertWindow" hidden></p>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Currency</h2>
+          <div class="field">
+            <label for="setCurrency">Currency for prices</label>
+            <select id="setCurrency">
+              <option value="USD">USD — US Dollar</option>
+              <option value="PKR">PKR — Pakistani Rupee</option>
+              <option value="EUR">EUR — Euro</option>
+              <option value="GBP">GBP — British Pound</option>
+              <option value="INR">INR — Indian Rupee</option>
+              <option value="AED">AED — UAE Dirham</option>
+              <option value="SAR">SAR — Saudi Riyal</option>
+              <option value="CAD">CAD — Canadian Dollar</option>
+              <option value="AUD">AUD — Australian Dollar</option>
+              <option value="JPY">JPY — Japanese Yen</option>
+            </select>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Appearance</h2>
+          <div class="field">
+            <label for="setTheme">Theme</label>
+            <select id="setTheme">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>Your data</h2>
+          <p class="panel-text">Everything is stored only in this browser. Export a backup file before clearing browser data or switching devices.</p>
+          <p class="panel-text">Stored: <strong id="storageInfo">0 products · 0 KB</strong></p>
+          <div class="btn-row">
+            <button class="btn btn-secondary" id="exportBtn" type="button">Export backup (JSON)</button>
+            <button class="btn btn-secondary" id="importBtn" type="button">Import backup</button>
+            <input type="file" id="importFile" accept="application/json,.json" hidden>
+          </div>
+          <p class="field-error" id="importError" hidden></p>
+          <p class="field-note" id="importNote" hidden></p>
+        </div>
+        <div class="panel danger-panel">
+          <h2>Delete everything</h2>
+          <p class="panel-text">This removes all products, service records and settings from this browser. Export a backup first if you want to keep a copy.</p>
+          <button class="btn btn-danger" id="deleteAllBtn" type="button">Delete all data</button>
+          <p class="field-hint">Tap once to arm, then tap again within 10 seconds to confirm.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="bottom-nav" id="bottomNav" aria-label="Main navigation">
+    <button class="nav-btn" data-view="dashboard" aria-current="page">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      <span>Dashboard</span>
+    </button>
+    <button class="nav-btn" data-view="products">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+      <span>Products</span>
+    </button>
+    <button class="nav-btn" data-view="form">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+      <span>Add</span>
+    </button>
+    <button class="nav-btn" data-view="settings">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span>Settings</span>
+    </button>
+  </nav>
+</div>
+
+<div class="modal-backdrop" id="confirmBackdrop" hidden>
+  <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmText">
+    <h2 id="confirmTitle">Are you sure?</h2>
+    <p id="confirmText"></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="confirmCancel" type="button">Cancel</button>
+      <button class="btn btn-danger" id="confirmOk" type="button">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>
